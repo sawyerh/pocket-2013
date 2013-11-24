@@ -31,7 +31,6 @@
         text-align: center;
         font-size: 24px;
         line-height: 1.1;
-        margin: 45px 0 15px;
       }
 
       .pocket-chapter-meta{
@@ -47,19 +46,19 @@
 <div id="pocket-chapter-cover">
   
   {% if meta.image %}
-    <img id="pocket-chapter-image" src="{{ meta.image }}" alt="{{ title }}" />
+    <p><img id="pocket-chapter-image" src="..{{ meta.image }}" alt="{{ title }}" /></p>
   {% endif %}
 
   <h1 class="pocket-chapter-title">{{ title }}</h1>
 
-  {% comment %}<div class="pocket-line-break"></div>{% endcomment %}
-
   <p class="pocket-chapter-meta">
     {{ meta['date'] }}&nbsp;&nbsp;&bull;&nbsp;&nbsp;{{ meta['author'] }}<br />
-    <a href="{{ meta.link }}">{{ meta.site }}</a>
+    {% assign pretty_link = meta.link | split: 'http://' %}
+    {% assign pretty_link = pretty_link[1] | split: '/' %}
+    <a href="{{ meta.link }}">{{ pretty_link[0]  }}</a>
   </p>
 </div>
 
-{{ body_raw | replace: '—', "&mdash;" | replace: '’', '&apos;' | replace: '“', '&ldquo;' | replace: '”', '&rdquo;' | replace: 'é', '&eacute;' | replace: 'id="story"', '' | replace: 'target="new"', '' }}
+{{ body_raw | replace: '—', "&mdash;" | replace: '’', '&apos;' | replace: '“', '&ldquo;' | replace: '”', '&rdquo;' | replace: 'é', '&eacute;' | replace: 'id="story"', '' | replace: 'target="new"', '' | replace: '<hr class="rdb-page-break" />', '' | replace: 'localized_resources/', '../assets/' }}
 </body>
 </html>
