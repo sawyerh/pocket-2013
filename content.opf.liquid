@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="2.0" unique-identifier="bookid">
+  <metadata>
+      <dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/" id="bookid">urn:uuid:3faa5cb9ee574e449cd7fb700cac580d</dc:identifier>
+      <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">Pocket 2013</dc:title>
+      <dc:date xmlns:dc="http://purl.org/dc/elements/1.1/">2013-11-23</dc:date>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">sawyerh</dc:creator>
+      <dc:language xmlns:dc="http://purl.org/dc/elements/1.1/">en</dc:language>
+      {% comment %}<meta name="cover" content="cover-image" />{% endcomment %}
+  </metadata>
+  <manifest>
+      <item id="ncxtoc" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+      {% comment %}<item id="css" href="readlist_epub.css" media-type="text/css"/>{% endcomment %}
+      {% comment %}<item id="cover-image" href="cover.jpg" media-type="image/jpeg"/>{% endcomment %}
+      <item id="cover" href="cover/index.html" media-type="application/xhtml+xml"/>
+      
+      {% for page in site.pages %}
+        <item id="{{ page.slug }}" href="{{ page.slug }}/index.html" media-type="application/xhtml+xml"/>
+
+        {% for asset in page.assets %}
+          <item id="{{ page.slug }}_asset_{{forloop.index}}" href="assets/{{ asset.filename }}" media-type="{{ asset.content_type }}"/>
+        {% endfor %}
+      {% endfor %}
+      
+  </manifest>
+  <spine toc="ncxtoc">
+      <itemref idref="cover" linear="yes"/>
+      {% for page in site.pages %}
+          <itemref idref="{{ page.slug }}"/>
+      {% endfor %}
+  </spine>
+
+  <guide>
+      <reference href="cover/index.html" type="cover" title="Cover"/>
+  </guide>
+
+</package>

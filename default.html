@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{{ title }}</title>
+    <style type="text/css">
+      body{
+        max-width: 800px;
+        margin: auto;
+        line-height: 1.5;
+      }
+
+      img { max-width: 100%; }
+
+      a{
+        color: #1cb568;
+      }
+
+      #pocket-chapter-cover{
+        page-break-after: always;
+        break-after: always;
+        text-align: center;
+      }
+
+      #pocket-chapter-image{
+        width: 100%;
+      }
+
+      #pocket-chapter-cover h1{
+        display: block;
+        text-align: center;
+        font-size: 24px;
+        line-height: 1.1;
+        margin: 45px 0 15px;
+      }
+
+      .pocket-chapter-meta{
+        margin: 0 0 60px;
+        display: block;
+        font-size: 0.8em;
+        text-align: center;
+      }
+    </style>
+</head>
+<body>
+
+<div id="pocket-chapter-cover">
+  
+  {% if meta.image %}
+    <img id="pocket-chapter-image" src="{{ meta.image }}" alt="{{ title }}" />
+  {% endif %}
+
+  <h1 class="pocket-chapter-title">{{ title }}</h1>
+
+  {% comment %}<div class="pocket-line-break"></div>{% endcomment %}
+
+  <p class="pocket-chapter-meta">
+    {{ meta['date'] }}&nbsp;&nbsp;&bull;&nbsp;&nbsp;{{ meta['author'] }}<br />
+    <a href="{{ meta.link }}">{{ meta.site }}</a>
+  </p>
+</div>
+
+{{ body_raw | replace: '—', "&mdash;" | replace: '’', '&apos;' | replace: '“', '&ldquo;' | replace: '”', '&rdquo;' | replace: 'é', '&eacute;' | replace: 'id="story"', '' | replace: 'target="new"', '' }}
+</body>
+</html>
