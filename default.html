@@ -59,6 +59,6 @@
   </p>
 </div>
 
-{{ body_raw | replace: '—', "&mdash;" | replace: '’', '&apos;' | replace: '“', '&ldquo;' | replace: '”', '&rdquo;' | replace: 'é', '&eacute;' | replace: 'id="story"', '' | replace: 'target="new"', '' | replace: '<hr class="rdb-page-break" />', '' | replace: 'localized_resources/', '../assets/' }}
+{{ body_raw | replace: '—', "&mdash;" | replace: '’', '&apos;' | replace: '“', '&ldquo;' | replace: '”', '&rdquo;' | replace: 'é', '&eacute;' | replace: 'id="', 'data-id="' | replace: 'target="new"', '' | replace: '<hr class="rdb-page-break" />', '' | replace: 'localized_resources/', '../assets/' }}
 </body>
 </html>
