@@ -55,7 +55,7 @@
     {{ meta['date'] }}&nbsp;&nbsp;&bull;&nbsp;&nbsp;{{ meta['author'] }}<br />
     {% assign pretty_link = meta.link | split: 'http://' %}
     {% assign pretty_link = pretty_link[1] | split: '/' %}
-    <a href="{{ meta.link }}">{{ pretty_link[0]  }}</a>
+    <a href="{{ meta.link }}">{{ pretty_link[0] | replace: 'www.', '' }}</a>
   </p>
 </div>
 
