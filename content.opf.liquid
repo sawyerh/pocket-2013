@@ -11,6 +11,7 @@
   <manifest>
       <item id="ncxtoc" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
       <item id="cover" href="cover/index.html" media-type="application/xhtml+xml"/>
+      <item id="cover-image" href="{{ site.meta.cover }}" media-type="image/jpeg"/>
       
       {% for page in site.pages %}
         <item id="{{ page.slug }}" href="{{ page.slug }}/index.html" media-type="application/xhtml+xml"/>
