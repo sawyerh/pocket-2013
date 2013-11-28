@@ -13,12 +13,14 @@
   <navMap>
       
     {% for page in site.pages %}
-      <navPoint id="{{page.slug}}" playOrder="{{ forloop.index }}">
-        <navLabel>
-            <text>{{ page.title }}</text>
-        </navLabel>
-        <content src="{{ page.slug }}/index.html"/>
-      </navPoint>
+      {% if page.slug != "cover" %}
+        <navPoint id="{{page.slug}}" playOrder="{{ forloop.index }}">
+          <navLabel>
+              <text>{{ page.title }}</text>
+          </navLabel>
+          <content src="{{ page.slug }}/index.html"/>
+        </navPoint>
+      {% endif %}
     {% endfor %}
       
   </navMap>
