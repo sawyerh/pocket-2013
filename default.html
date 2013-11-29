@@ -34,31 +34,48 @@
       }
 
       .pocket-chapter-meta{
-        margin: 0 0 60px;
         display: block;
         font-size: 0.8em;
         text-align: center;
+        margin: 0;
+      }
+
+      .pocket-chapter-nav{
+        font-size: 0.8em;
+        margin: 20px 0 60px;
       }
     </style>
 </head>
 <body>
 
 <div id="pocket-chapter-cover">
-  
+
   {% if meta.image %}
     <p><img id="pocket-chapter-image" src="..{{ meta.image }}" alt="{{ title }}" /></p>
   {% endif %}
 
   <h1 class="pocket-chapter-title">{{ title }}</h1>
 
-  <p class="pocket-chapter-meta">
-    {{ meta['date'] }}&nbsp;&nbsp;&bull;&nbsp;&nbsp;{{ meta['author'] }}<br />
-    {% assign pretty_link = meta.link | split: 'http://' %}
-    {% assign pretty_link = pretty_link[1] | split: '/' %}
-    <a href="{{ meta.link }}">{{ pretty_link[0] | replace: 'www.', '' }}</a>
-  </p>
+  {% unless meta.hide_meta %}
+    <p class="pocket-chapter-meta">
+      {{ meta['date'] }}&nbsp;&nbsp;&bull;&nbsp;&nbsp;{{ meta['author'] }}<br />
+      {% assign pretty_link = meta.link | split: 'http://' %}
+      {% assign pretty_link = pretty_link[1] | split: '/' %}
+      <a href="{{ meta.link }}">{{ pretty_link[0] | replace: 'www.', '' }}</a>
+    </p>
+
+    <p class="pocket-chapter-nav">
+      {% if previous %}<a href="..{{ previous.url }}/index.html">&larr; Prev</a>{% endif %}
+      {% if previous && next %}&nbsp;&nbsp;|&nbsp;&nbsp;{% endif %}
+      {% if next %}<a href="..{{ next.url }}/index.html">Next &rarr;</a>{% endif %}
+    </p>
+  {% endunless %}
 </div>
 
-{{ body_raw | replace: '—', "&mdash;" | replace: '’', '&apos;' | replace: '“', '&ldquo;' | replace: '”', '&rdquo;' | replace: 'é', '&eacute;' | replace: 'id="', 'data-id="' | replace: 'target="new"', '' | replace: '<hr class="rdb-page-break" />', '' | replace: 'localized_resources/', '../assets/' | replace: '<br>', '<br />' }}
+{% if meta.parse_markdown %}
+  {{ body }}
+{% else %}
+  {{ body_raw | replace: '—', "&mdash;" | replace: '’', '&apos;' | replace: '“', '&ldquo;' | replace: '”', '&rdquo;' | replace: 'é', '&eacute;' | replace: 'id="', 'data-id="' | replace: 'target="new"', '' | replace: '<hr class="rdb-page-break" />', '' | replace: 'localized_resources/', '../assets/' | replace: '<br>', '<br />' }}
+{% endif %}
 </body>
 </html>

@@ -2,9 +2,9 @@
 <package xmlns="http://www.idpf.org/2007/opf" version="2.0" unique-identifier="bookid">
   <metadata>
       <dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/" id="bookid">urn:uuid:3faa5cb9ee574e449cd7fb700cac580d</dc:identifier>
-      <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">Pocket II</dc:title>
-      <dc:date xmlns:dc="http://purl.org/dc/elements/1.1/">2013-11-23</dc:date>
-      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Sawyer Hollenshead</dc:creator>
+      <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">{{ site.title }}</dc:title>
+      <dc:date xmlns:dc="http://purl.org/dc/elements/1.1/">{{ site.pages.last.date | date_to_xmlschema }}</dc:date>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">{{ site.meta.author }}</dc:creator>
       <dc:language xmlns:dc="http://purl.org/dc/elements/1.1/">en</dc:language>
       <meta name="cover" content="cover-image" />
   </metadata>
@@ -12,7 +12,7 @@
       <item id="ncxtoc" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
       <item id="cover" href="cover/index.html" media-type="application/xhtml+xml"/>
       <item id="cover-image" href="{{ site.meta.cover }}" media-type="image/jpeg"/>
-      
+
       {% for page in site.pages %}
         <item id="{{ page.slug }}" href="{{ page.slug }}/index.html" media-type="application/xhtml+xml"/>
 
@@ -20,7 +20,7 @@
           <item id="{{ page.slug }}_asset_{{forloop.index}}" href="assets/{{ asset.filename }}" media-type="{{ asset.content_type }}"/>
         {% endfor %}
       {% endfor %}
-      
+
   </manifest>
   <spine toc="ncxtoc">
       <itemref idref="cover" linear="yes"/>
