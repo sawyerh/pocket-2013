@@ -1,2 +1,0 @@
-s3cmd sync s3://bucket-name ~/Downloads/s3-download-folder-name
-(from within s3 download folder) zip -r pocket.epub *
