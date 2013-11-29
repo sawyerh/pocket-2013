@@ -16,11 +16,13 @@
         color: #1cb568;
       }
 
-      #pocket-chapter-cover{
-        page-break-after: always;
-        break-after: always;
-        text-align: center;
-      }
+      {% unless meta.hide_meta %}
+        #pocket-chapter-cover{
+          page-break-after: always;
+          break-after: always;
+          text-align: center;
+        }
+      {% endunless %}
 
       #pocket-chapter-image{
         width: 100%;
@@ -43,6 +45,14 @@
       .pocket-chapter-nav{
         font-size: 0.8em;
         margin: 20px 0 60px;
+        text-align: center;
+        display: block;
+      }
+
+      .pocket-chapter-end{
+        display: block;
+        text-align: center;
+        margin-top: 30px;
       }
     </style>
 </head>
@@ -76,6 +86,12 @@
   {{ body }}
 {% else %}
   {{ body_raw | replace: '—', "&mdash;" | replace: '’', '&apos;' | replace: '“', '&ldquo;' | replace: '”', '&rdquo;' | replace: 'é', '&eacute;' | replace: 'id="', 'data-id="' | replace: 'target="new"', '' | replace: '<hr class="rdb-page-break" />', '' | replace: 'localized_resources/', '../assets/' | replace: '<br>', '<br />' }}
+{% endif %}
+
+{% if meta.link %}
+  <p class="pocket-chapter-end">
+    <a href="{{ meta.link }}">View original</a>
+  </p>
 {% endif %}
 </body>
 </html>
