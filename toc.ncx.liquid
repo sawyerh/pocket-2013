@@ -11,7 +11,7 @@
       <text>{{ site.title }}</text>
   </docTitle>
   <navMap>
-      
+
     {% for page in site.pages %}
       {% if page.slug != "cover" %}
         <navPoint id="{{page.slug}}" playOrder="{{ forloop.index }}">
@@ -22,6 +22,6 @@
         </navPoint>
       {% endif %}
     {% endfor %}
-      
+
   </navMap>
 </ncx>

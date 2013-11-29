@@ -76,7 +76,7 @@
 
     <p class="pocket-chapter-nav">
       {% if previous %}<a href="..{{ previous.url }}/index.html">&larr; Prev</a>{% endif %}
-      {% if previous && next %}&nbsp;&nbsp;|&nbsp;&nbsp;{% endif %}
+      {% if previous and next %}&nbsp;&nbsp;|&nbsp;&nbsp;{% endif %}
       {% if next %}<a href="..{{ next.url }}/index.html">Next &rarr;</a>{% endif %}
     </p>
   {% endunless %}
